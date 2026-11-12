@@ -12,13 +12,13 @@ img { display: block; max-width: 100%; }
 .site--home .site-header { position: absolute; top: 0; left: 0; width: 100%; background: linear-gradient(#090a0de8,#090a0d00); border: 0; }
 .wordmark { font: 600 30px/1 var(--display); letter-spacing: -.06em; display: flex; align-items: center; gap: 18px; }
 .wordmark span { font: 400 10px/1.4 var(--sans); letter-spacing: .12em; text-transform: uppercase; max-width: 85px; }
-.site-header nav { display: flex; gap: clamp(20px,3vw,52px); }
-.site-header nav a { font-size: 11px; letter-spacing: .13em; text-transform: uppercase; position: relative; padding: 14px 0; }
-.site-header nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 6px; height: 1px; background: var(--oxblood-light); transform: scaleX(0); transition: transform .2s; }
-.site-header nav a[aria-current],.site-header nav a:hover { color: #fff; }
-.site-header nav a[aria-current]::after,.site-header nav a:hover::after { transform: scaleX(1); }
+.site-header .desktop-navigation { display: flex; gap: clamp(20px,3vw,52px); }
+.site-header .desktop-navigation a { font-size: 11px; letter-spacing: .13em; text-transform: uppercase; position: relative; padding: 14px 0; }
+.site-header .desktop-navigation a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 6px; height: 1px; background: var(--oxblood-light); transform: scaleX(0); transition: transform .2s; }
+.site-header .desktop-navigation a[aria-current],.site-header .desktop-navigation a:hover { color: #fff; }
+.site-header .desktop-navigation a[aria-current]::after,.site-header .desktop-navigation a:hover::after { transform: scaleX(1); }
 .edition { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
-.menu-toggle { display: none; min-height: 44px; }
+.mobile-contact,.chapter-strip { display: none; }
 .skip-link { position: fixed; top: -100px; left: 20px; z-index: 100; padding: 15px; background: var(--ivory); color: var(--obsidian); }
 .skip-link:focus { top: 10px; }
 /* Full-viewport covers. Composition belongs to CSS; only the inner layers move. */
@@ -153,22 +153,14 @@ img { display: block; max-width: 100%; }
 /* Phone covers have deliberate vertical framing and readable copy below. */
 @media (max-width: 700px) {
  :root { --header-height: 74px; --gutter: 22px; }
- .site-header { gap: 12px; }
- .wordmark { font-size: 27px; }
- .wordmark span { font-size: 8px; }
- .edition { display: none; }
- .menu-toggle { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
- .site-header nav { display: none; position: absolute; top: 74px; left: 0; right: 0; background: #111316; padding: 24px var(--gutter); border-bottom: 1px solid #ffffff30; }
- .site-header nav.is-open { display: flex; flex-direction: column; gap: 6px; }
- .site-header nav a { font-size: 18px; padding: 12px 0; }
  .home { min-height: 680px; touch-action: pan-y pinch-zoom; }
- .cover-copy > .eyebrow { top: 100px; font-size: 9px; }
+ .cover-copy > .eyebrow { top: calc(var(--mobile-header-height) + 14px); font-size: 9px; }
  .cover-copy > .eyebrow span { display: none; }
  .cover-copy h1 { font-size: 18vw; }
  .cover-story { font-size: 18px; }
  .cover-story .credit,.school { font-size: 9px; margin-top: 12px; }
  .cover--introduction .cover-photo img { width: 240vw; left: -115vw; top: 36%; }
- .cover--introduction .cover-copy h1 { top: 137px; left: var(--gutter); font-size: 22vw; line-height: .9; }
+ .cover--introduction .cover-copy h1 { top: calc(155px + env(safe-area-inset-top)); left: var(--gutter); font-size: 22vw; line-height: .9; }
  .cover--introduction .cover-copy h1 span:last-child { margin-left: 0; font-size: .82em; }
  .cover--introduction .cover-story { bottom: 100px; left: var(--gutter); max-width: 53vw; padding: 12px 7px 12px 0; font-size: 18px; }
  /* Each mobile portrait has its own framing; the sofa retains its approved crop. */
@@ -181,14 +173,14 @@ img { display: block; max-width: 100%; }
  .cover.cover--artist .cover-artwork { inset: 0; }
  .cover.cover--artist .cover-photo img { width: 156vw; height: auto; object-fit: fill; left: -26%; top: 20%; bottom: auto; }
  .cover--character .cover-copy > .eyebrow { left: var(--gutter); }
- .cover--character .cover-copy h1 { left: var(--gutter); top: 137px; font-size: 13vw; }
+ .cover--character .cover-copy h1 { left: var(--gutter); top: calc(155px + env(safe-area-inset-top)); font-size: 13vw; }
  .cover--character .cover-copy h1 span { display: inline; margin-right: .18em; }
  .cover--character .cover-story { left: var(--gutter); top: auto; bottom: 105px; max-width: 85%; padding: 18px 0 0; background: linear-gradient(transparent,#21191af2 25%); }
- .cover--presence .cover-copy h1 { top: 137px; font-size: 15vw; left: var(--gutter); }
+ .cover--presence .cover-copy h1 { top: calc(155px + env(safe-area-inset-top)); font-size: 15vw; left: var(--gutter); }
  .cover--presence .cover-copy h1 span { display: inline; margin-right: .12em; }
  .cover--presence .cover-story { bottom: 105px; max-width: 55%; background: #111316d9; padding: 12px 0; }
 
- .cover--artist .cover-copy h1 { top: 137px; left: var(--gutter); font-size: 15vw; max-width: 90%; }
+ .cover--artist .cover-copy h1 { top: calc(155px + env(safe-area-inset-top)); left: var(--gutter); font-size: 15vw; max-width: 90%; }
  .cover--artist .cover-copy h1 span { display: inline; margin-right: .12em; }
  .cover--artist .cover-story { left: var(--gutter); bottom: 105px; max-width: 85%; padding: 12px 0; background: #27221fe6; }
  .cover-controls { padding: 12px var(--gutter); gap: 8px; flex-wrap: wrap; }
@@ -219,6 +211,51 @@ img { display: block; max-width: 100%; }
  .site-footer { flex-direction: column; gap: 15px; }
  .image-viewer { width: 96vw; padding: 60px 10px; }
  .viewer-controls { left: 10px; right: 10px; }
+}
+/* Navigation has its own fit breakpoint, independent of the 700px page layouts.
+   Desktop needs ~701px for its fonts, gutters and minimum gaps; 720px leaves room.
+   Keep these rules out of the desktop header and cover-artwork sizing. */
+@media (width < 720px) {
+ :root { --mobile-header-height: calc(15px + 44px + 44px + env(safe-area-inset-top)); }
+ .site-header {
+  height: auto;
+  padding: calc(15px + env(safe-area-inset-top)) max(var(--gutter),env(safe-area-inset-right)) 0 max(var(--gutter),env(safe-area-inset-left));
+  display: grid; grid-template-columns: minmax(0,1fr) auto; grid-template-rows: minmax(44px,auto) auto; gap: 0 12px;
+ }
+ .wordmark { font-size: 27px; }
+ .wordmark span { font-size: 8px; }
+ .site-header .desktop-navigation,.site-header .edition { display: none; }
+ .mobile-contact { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; position: relative; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+ .mobile-contact::after { content: ''; position: absolute; bottom: 7px; left: 0; right: 0; height: 1px; background: var(--oxblood-light); transform: scaleX(0); transition: transform .2s; }
+ .mobile-contact[aria-current],.mobile-contact:hover { color: #fff; }
+ .mobile-contact[aria-current]::after,.mobile-contact:hover::after { transform: scaleX(1); }
+ .chapter-strip { display: block; position: relative; grid-column: 1 / -1; min-width: 0; align-self: stretch; }
+ .chapter-strip::before,.chapter-strip::after { content: ''; position: absolute; top: 0; bottom: 0; width: 18px; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .2s; }
+ .chapter-strip::before { left: 0; background: linear-gradient(90deg,#090a0d,transparent); }
+ .chapter-strip::after { right: 0; background: linear-gradient(-90deg,#090a0d,transparent); }
+ .chapter-strip[data-before="true"]::before,.chapter-strip[data-after="true"]::after { opacity: 1; }
+ .chapter-navigation { display: flex; justify-content: space-between; gap: clamp(20px,5vw,32px); min-height: 44px; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; touch-action: pan-x pinch-zoom; }
+ .chapter-navigation::-webkit-scrollbar { display: none; }
+ .chapter-navigation a { flex: 0 0 auto; display: inline-flex; align-items: flex-start; gap: 6px; min-height: 44px; padding-top: 6px; position: relative; white-space: nowrap; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+ .chapter-navigation a > span { font-size: 8px; letter-spacing: .04em; color: #b58e88; }
+ .chapter-navigation a::after { content: ''; position: absolute; bottom: 8px; left: 0; right: 0; height: 1px; background: var(--oxblood-light); transform: scaleX(0); transform-origin: left; transition: transform .2s; }
+ .chapter-navigation a[aria-current],.chapter-navigation a:hover { color: var(--ivory); }
+ .chapter-navigation a[aria-current]::after { transform: scaleX(1); }
+ .chapter-navigation a:focus-visible { outline-offset: -2px; }
+ .site--home .site-header { background: linear-gradient(#090a0df2 60%,#090a0dc9); }
+}
+/* The small interval with tablet cover framing and narrow navigation also needs
+   clearance below the chapter row, especially in short landscape windows. */
+@media (700px < width < 720px) {
+ .cover-copy > .eyebrow { top: max(16%,calc(var(--mobile-header-height) + 14px)); }
+ .cover--introduction .cover-copy h1 { top: max(22%,calc(155px + env(safe-area-inset-top))); }
+ .cover--character .cover-copy h1 { top: max(24%,calc(155px + env(safe-area-inset-top))); }
+ .cover--artist .cover-copy h1 { top: max(25%,calc(155px + env(safe-area-inset-top))); }
+}
+@media (700px < width < 720px) and (max-aspect-ratio: 1/1) {
+ .cover--introduction .cover-copy h1 { top: max(23%,calc(155px + env(safe-area-inset-top))); }
+ .cover--character .cover-copy h1 { top: max(19%,calc(155px + env(safe-area-inset-top))); }
+ .cover--artist .cover-copy h1 { top: max(20%,calc(155px + env(safe-area-inset-top))); }
 }
 /* Small/short screens use document height rather than clipping essential copy. */
 @media (max-width: 370px) {
@@ -258,7 +295,7 @@ img { display: block; max-width: 100%; }
 @media (min-width: 2400px) {
  .cover-story { max-width: 530px; }
  .cover-story .credit,.school,.eyebrow { font-size: 14px; }
- .site-header nav a { font-size: 14px; }
+ .site-header .desktop-navigation a { font-size: 14px; }
  .gallery-item > div { height: 650px; }
 }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition: none !important; scroll-behavior: auto !important; } }
